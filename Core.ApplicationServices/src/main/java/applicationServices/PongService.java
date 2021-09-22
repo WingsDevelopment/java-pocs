@@ -17,7 +17,10 @@ public class PongService implements IPongService {
         return pong.getPairs().get(0);
     }
 
+
     public Pong GetById(Long id) {
+        if (id == -1L) throw new IllegalArgumentException("Id is not cool");
+
         var pong = pongRepository.GetById(id);
         return pong;
     }

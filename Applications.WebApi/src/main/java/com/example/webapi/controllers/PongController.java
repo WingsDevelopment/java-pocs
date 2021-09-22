@@ -9,9 +9,9 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/api/ping")
 public class PongController {
-    private PongService pongService;
+    private IPongService pongService;
 
-    public PongController(PongService pongService) {
+    public PongController(IPongService pongService) {
         this.pongService = pongService;
     }
 
