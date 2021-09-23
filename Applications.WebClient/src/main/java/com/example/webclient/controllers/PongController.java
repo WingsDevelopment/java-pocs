@@ -47,23 +47,21 @@ public class PongController {
         return "ping";
     }
 
-    @GetMapping
-    @RequestMapping("createPong")
+    @GetMapping("createPong")
     public String create(Model model){
         model.addAttribute("pong", new PongVM());
 
         return "pongs/createPong";
     }
 
-    @PostMapping
-    @RequestMapping("createPongPost")
-    public String createPong(@Valid PongVM pong, BindingResult result, Model model) {
+    @PostMapping("createPong")
+    public String createPong(@ModelAttribute(value="pong") PongVM pong,BindingResult result) {
         if (result.hasErrors()) {
             return "pongs/createPong";
         }
 
         var pongDTO = pongService.CreatePong(new Pong(pong.getId()));
-        return "/" + pongDTO.getId();
+        return "redirect:/po/" + pongDTO.getId();
     }
 
 //    @RequestMapping(value = "{id}", method = RequestMethod.DELETE)

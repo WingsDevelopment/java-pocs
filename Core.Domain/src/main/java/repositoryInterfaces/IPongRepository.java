@@ -6,7 +6,7 @@ public interface IPongRepository {
     //crud
     Pong GetById(Long id);
 
-    void CreatePong(Pong pong);
+    Long CreatePong(Pong pong);
 
     //ICollection
     Iterable<Pong> GetAll();

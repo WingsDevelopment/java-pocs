@@ -6,7 +6,7 @@
 </head>
 <body>
     <h1>Create pong</h1>
-    <form action="#" th:action="@{/createPong.html}" th:object="${pong}" method="post">
+    <form action="#" th:action="@{/po/createPong}" th:object="${pong}" method="post">
         <label for="name">Value</label>
         <input type="text" th:field="*{value}" id="name" placeholder="Value">
         <span th:if="${#fields.hasErrors('value')}" th:errors="*{value}"></span>

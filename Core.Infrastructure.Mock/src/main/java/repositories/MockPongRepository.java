@@ -16,7 +16,9 @@ public class MockPongRepository implements IPongRepository {
         return pong;
     }
 
-    public void CreatePong(Pong pong) { }
+    public Long CreatePong(Pong pong) {
+        return 1L;
+    }
 
     public Iterable<Pong> GetAll() {
         var pongs = new ArrayList<Pong>();

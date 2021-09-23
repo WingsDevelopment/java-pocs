@@ -26,8 +26,11 @@ public class PongService implements IPongService {
     }
 
     public Pong CreatePong(Pong pong) {
-        pongRepository.CreatePong(pong);
-        return pong;
+        var id = pongRepository.CreatePong(pong);
+
+        var result = pongRepository.GetById(id);
+
+        return result;
     }
 
     public Iterable<Pong> GetAll() {
