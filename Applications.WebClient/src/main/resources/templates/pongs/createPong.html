@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h1>Create pong</h1>
+    <form action="#" th:action="@{/createPong.html}" th:object="${pong}" method="post">
+        <label for="name">Value</label>
+        <input type="text" th:field="*{value}" id="name" placeholder="Value">
+        <span th:if="${#fields.hasErrors('value')}" th:errors="*{value}"></span>
+        <label for="email">Table id</label>
+        <input type="text" th:field="*{pingPongTableId}" id="email" placeholder="Table id">
+        <span th:if="${#fields.hasErrors('pingPongTableId')}" th:errors="*{pingPongTableId}"></span>
+        <input type="submit" value="Add Pong1">
+    </form>
+</body>
+</html>

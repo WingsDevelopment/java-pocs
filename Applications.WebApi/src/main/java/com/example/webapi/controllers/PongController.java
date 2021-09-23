@@ -7,7 +7,7 @@ import interfaces.IPongService;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/ping")
+@RequestMapping("/api/po")
 public class PongController {
     private IPongService pongService;
 
@@ -16,13 +16,14 @@ public class PongController {
     }
 
     @GetMapping
+    @RequestMapping("getList")
     public Iterable<Pong> list() {
         return pongService.GetAll();
     }
 
     @GetMapping
     @RequestMapping("{id}")
-    public Pong get(@PathVariable Long id) {
+    public Pong getById(@PathVariable Long id) {
         return pongService.GetById(id);
     }
 
