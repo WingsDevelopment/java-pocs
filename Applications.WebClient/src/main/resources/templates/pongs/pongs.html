@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h1>Pongs</h1>
+
+    <table>
+        <tr th:each="pong : ${pongs}">
+            <td th:text="${pong.id}"></td>
+            <td th:text="${pong.value}"></td>
+            <td>
+                <a th:href="@{/po/{id}(id=${pong.id})}">view</a>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>

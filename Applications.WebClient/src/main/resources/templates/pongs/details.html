@@ -9,5 +9,7 @@
 
     <p></p>
     <input type="text" name="Pong" value="Thomas" th:value="${pong.getId()}" />
+    <a th:href="@{/po/pongs}">Vrati se na listu</a>
+    <a th:href="@{/po/delete/{id}(id=${pong.id})}">Obrisi</a>
 </body>
 </html>

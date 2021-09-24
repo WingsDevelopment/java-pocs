@@ -1,7 +1,6 @@
 package com.example.webclient.controllers;
 
 import com.example.webclient.models.PongVM;
-import entities.Ping;
 import entities.Pong;
 import interfaces.IPongService;
 import org.springframework.stereotype.Controller;
@@ -9,14 +8,9 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
-import java.util.ArrayList;
-import java.util.Arrays;
-
 @Controller
 @RequestMapping("/po")
 public class PongController {
-
     private IPongService pongService;
 
     public PongController(IPongService pongService) {
@@ -28,7 +22,7 @@ public class PongController {
         var pongs = pongService.GetAll();
 
         model.addAttribute("pongs", pongs);
-        return "pongs";
+        return "pongs/pongs";
     }
 
     @GetMapping
@@ -36,7 +30,7 @@ public class PongController {
     public String getById(Model model, @PathVariable Long id){
         var pong = pongService.GetById(id);
         model.addAttribute("pong", pong);
-        return "details";
+        return "pongs/details";
     }
 
     @GetMapping
@@ -64,13 +58,21 @@ public class PongController {
         return "redirect:/po/" + pongDTO.getId();
     }
 
-//    @RequestMapping(value = "{id}", method = RequestMethod.DELETE)
-//    public void delete(@PathVariable Long id) {
-//        pongService.Delete(id);
-//    }
-//
-//    @RequestMapping(value = "{id}", method = RequestMethod.PUT)
-//    public Pong update(@PathVariable Long id, @RequestBody Pong pong) {
-//        return pongService.UpdatePong(pong);
-//    }
+    @PutMapping(value = "update/{id}")
+    public String update(@PathVariable Long id, @RequestBody Pong pong,BindingResult result) {
+        if (result.hasErrors()) {
+            return "pongs/createPong";
+        }
+
+        var pongDTO = pongService.UpdatePong(pong);
+
+        return "redirect:/po/" + pongDTO.getId();
+    }
+
+    @GetMapping(value = "delete/{id}")
+    public String delete(@PathVariable Long id) {
+        pongService.Delete(id);
+
+        return "redirect:/po/pongs";
+    }
 }
